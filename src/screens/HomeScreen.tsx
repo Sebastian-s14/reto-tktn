@@ -1,12 +1,12 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-import { CategoryList, CustomIcon } from '@components'
+import { CategoryList, CustomIcon, HotelList } from '@components'
 import { Spacer } from '@ui'
 
 export const HomeScreen = () => {
   return (
-    <View>
+    <>
       <Text style={styles.headerTitle}>New York, US</Text>
       <View style={styles.mainTitleContainer}>
         <Text style={styles.mainTitle}>The best price</Text>
@@ -14,8 +14,9 @@ export const HomeScreen = () => {
       </View>
       <Spacer />
       <CategoryList />
-      <Spacer />
-    </View>
+      <Spacer space={18} />
+      <HotelList />
+    </>
   )
 }
 
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 20,
-    paddingVertical: 20,
+    paddingVertical: 18,
   },
   mainTitle: {
     fontSize: 40,
