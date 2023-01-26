@@ -46,6 +46,7 @@ export const TabNavigator = () => {
 
 const styles = StyleSheet.create({
   sceneContainerStyle: {
+    flex: 1,
     backgroundColor: theme.blankColor,
     padding: 16,
   },
