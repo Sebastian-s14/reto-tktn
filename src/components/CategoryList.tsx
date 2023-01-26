@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import { FlatList, View } from 'react-native'
 
 import { CategoryCard } from '@components'
 import { Category } from '@types'
@@ -17,7 +17,7 @@ const data: Category[] = [
     id: '2',
     name: 'Swite Home',
     image:
-      'https://mltmemkhoc5e.i.optimole.com/ADpOULM-2RR32Bqu/w:auto/h:auto/q:mauto/f:avif/https://rhp.es/wp-content/uploads/2022/04/HAB.5-P.PALACE.jpg',
+      'https://www.puregrenada.com/wp-content/uploads/2020/10/Siesta-Hotel-2-150x150.jpg',
     price: 999,
   },
   {
@@ -52,7 +52,7 @@ const data: Category[] = [
 
 export const CategoryList = () => {
   return (
-    <View style={styles.categories}>
+    <View>
       <FlatList
         horizontal
         data={data}
@@ -64,11 +64,3 @@ export const CategoryList = () => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  categories: {
-    display: 'flex',
-    flexDirection: 'row',
-    rowGap: 8,
-  },
-})
