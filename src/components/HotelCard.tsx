@@ -1,16 +1,38 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
-import React from 'react'
+import React, { useMemo } from 'react'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
+import { CustomIcon } from '@components'
+import { useStore } from '@store'
+import { theme } from '@theme'
 import { Hotel } from '@types'
-import { theme } from 'theme'
 
 interface HotelCardProps {
   hotel: Hotel
 }
 
-export const HotelCard = ({
-  hotel: { name, image, distance, price, priceDescription, description },
-}: HotelCardProps) => {
+export const HotelCard = ({ hotel }: HotelCardProps) => {
+  const {
+    id,
+    name,
+    image,
+    distance,
+    price,
+    priceDescription,
+    description,
+    rate,
+    stars,
+    isFavorite,
+  } = hotel
+  const addFavoriteHotel = useStore(state => state.addFavoriteHotel)
+  const removeFavoriteHotel = useStore(state => state.removeFavoriteHotel)
+  const memoStars = useMemo(
+    () => [...Array(stars)].map(() => '⭐').join(''),
+    [stars],
+  )
+
+  const handleFavorite = () =>
+    isFavorite ? removeFavoriteHotel(id) : addFavoriteHotel(hotel)
+
   return (
     <View style={styles.cardContainer}>
       <View style={styles.imageContainer}>
@@ -21,19 +43,36 @@ export const HotelCard = ({
         />
       </View>
       <View style={styles.detailsContainer}>
-        <Text style={styles.textName}>{name}</Text>
-        <Text>⭐⭐⭐⭐</Text>
-        <Text style={styles.textDistance}>{distance}</Text>
-        <View style={styles.priceSection}>
-          <Text>Price: </Text>
-          <Text style={styles.textPriceDescription}>{priceDescription}</Text>
+        <View style={styles.header}>
+          <Text style={styles.textName}>{name}</Text>
+          <TouchableOpacity onPress={handleFavorite}>
+            <CustomIcon
+              icon={isFavorite ? 'favorite' : 'favorite-border'}
+              size={30}
+            />
+          </TouchableOpacity>
         </View>
-        <Text style={styles.textPrice}>$ {price}</Text>
-        {description.map((d, index) => (
-          <Text key={index} style={styles.textDescription}>
-            {d}
-          </Text>
-        ))}
+        <View style={styles.body}>
+          <Text>{memoStars}</Text>
+          <Text style={styles.textDistance}>{distance}</Text>
+          <View style={styles.priceSection}>
+            <Text>Price: </Text>
+            <Text style={styles.textPriceDescription}>{priceDescription}</Text>
+          </View>
+          <Text style={styles.textPrice}>$ {price}</Text>
+        </View>
+        <View style={styles.footer}>
+          <View>
+            {description.map((d, index) => (
+              <Text key={index} style={styles.textDescription}>
+                {d}
+              </Text>
+            ))}
+          </View>
+          <View style={styles.textRateContainer}>
+            <Text style={styles.textRate}>{rate}</Text>
+          </View>
+        </View>
       </View>
     </View>
   )
@@ -56,10 +95,8 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 0.5,
-    // backgroundColor: 'purple',
   },
   detailsContainer: {
-    // backgroundColor: 'red',
     flex: 0.5,
     justifyContent: 'space-between',
   },
@@ -85,14 +122,31 @@ const styles = StyleSheet.create({
     color: theme.secondaryColor,
   },
   priceSection: {
-    // flex: 1,
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
   },
-  // detailsText: {
-
-  // },
-  // detailsActions :{
-
-  // }
+  header: {
+    flex: 0.2,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  body: {
+    flex: 0.6,
+    display: 'flex',
+    paddingBottom: 8,
+  },
+  footer: {
+    flex: 0.2,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  textRateContainer: {
+    padding: 4,
+    borderRadius: 4,
+    backgroundColor: theme.secondaryColor,
+  },
+  textRate: {
+    color: '#FFF',
+  },
 })
