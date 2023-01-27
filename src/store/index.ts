@@ -1,5 +1,6 @@
-import { Hotel } from 'types'
 import { create } from 'zustand'
+
+import { Hotel } from '@types'
 
 const data: Hotel[] = [
   {
@@ -33,6 +34,34 @@ const data: Hotel[] = [
   {
     id: '3',
     name: 'Garden Hills 2',
+    image:
+      'https://www.infobatumi.ge/wp-content/uploads/2022/05/Hotel-Monarch-1-INFOBATUMI.GE_-150x150.jpg',
+    price: 1560,
+    priceDescription: '6 nights stay',
+    rate: 5.2,
+    stars: 2,
+    distance: '2.1 km from center',
+    description: ['Breakfast included', 'Free Cancellation'],
+    categoryId: '2',
+    isFavorite: false,
+  },
+  {
+    id: '4',
+    name: 'Garden Hills 3',
+    image:
+      'https://www.infobatumi.ge/wp-content/uploads/2022/05/Hotel-Monarch-1-INFOBATUMI.GE_-150x150.jpg',
+    price: 1560,
+    priceDescription: '6 nights stay',
+    rate: 5.2,
+    stars: 2,
+    distance: '2.1 km from center',
+    description: ['Breakfast included', 'Free Cancellation'],
+    categoryId: '2',
+    isFavorite: false,
+  },
+  {
+    id: '5',
+    name: 'Garden Hills 4',
     image:
       'https://www.infobatumi.ge/wp-content/uploads/2022/05/Hotel-Monarch-1-INFOBATUMI.GE_-150x150.jpg',
     price: 1560,
