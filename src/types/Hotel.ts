@@ -8,4 +8,6 @@ export type Hotel = {
   stars: number
   distance: string
   description: string[]
+  categoryId: string
+  isFavorite: boolean
 }
