@@ -7,9 +7,9 @@ import {
   View,
 } from 'react-native'
 
-import { useStore } from '@store'
-import { Category } from '@types'
+import { useCustomStore } from '@hooks'
 import { theme } from '@theme'
+import { Category } from '@types'
 
 interface CategoryCardProps {
   category: Category
@@ -18,7 +18,7 @@ interface CategoryCardProps {
 export const CategoryCard = ({
   category: { id, name, image, price },
 }: CategoryCardProps) => {
-  const setActiveCategory = useStore(state => state.setActiveCategory)
+  const { setActiveCategory } = useCustomStore()
   return (
     <TouchableOpacity
       style={styles.cardContainer}

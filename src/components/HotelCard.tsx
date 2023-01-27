@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { CustomIcon } from '@components'
-import { useStore } from '@store'
+import { useCustomStore } from '@hooks'
 import { theme } from '@theme'
 import { Hotel } from '@types'
 
@@ -23,8 +23,8 @@ export const HotelCard = ({ hotel }: HotelCardProps) => {
     stars,
     isFavorite,
   } = hotel
-  const addFavoriteHotel = useStore(state => state.addFavoriteHotel)
-  const removeFavoriteHotel = useStore(state => state.removeFavoriteHotel)
+
+  const { addFavoriteHotel, removeFavoriteHotel } = useCustomStore()
   const memoStars = useMemo(
     () => [...Array(stars)].map(() => '⭐').join(''),
     [stars],

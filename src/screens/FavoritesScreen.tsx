@@ -1,11 +1,11 @@
 import React from 'react'
 
 import { HotelList } from '@components'
-import { useStore } from '@store'
+import { useCustomStore } from '@hooks'
 import { Empty, Title } from '@ui'
 
 export const FavoritesScreen = () => {
-  const favoriteHotels = useStore(state => state.favoriteHotels)
+  const { favoriteHotels } = useCustomStore()
   return (
     <>
       <Title text="Mis favoritos" />

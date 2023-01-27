@@ -2,12 +2,11 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 import { CategoryList, CustomIcon, HotelList } from '@components'
-import { useStore } from '@store'
+import { useCustomStore } from '@hooks'
 import { Empty, Spacer, Title } from '@ui'
 
 export const HomeScreen = () => {
-  const hotels = useStore(state => state.hotelsByCategory)
-  const activeCategory = useStore(state => state.activeCategory)
+  const { hotelsByCategory, activeCategory } = useCustomStore()
   return (
     <>
       <Title text="New York, US" />
@@ -18,7 +17,11 @@ export const HomeScreen = () => {
       <Spacer />
       <CategoryList />
       <Spacer space={18} />
-      {activeCategory === '' ? <Empty /> : <HotelList hotels={hotels} />}
+      {activeCategory === '' ? (
+        <Empty />
+      ) : (
+        <HotelList hotels={hotelsByCategory} />
+      )}
     </>
   )
 }
