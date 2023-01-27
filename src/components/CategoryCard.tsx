@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native'
 
+import { useStore } from '@store'
 import { Category } from '@types'
 import { theme } from '@theme'
 
@@ -15,10 +16,14 @@ interface CategoryCardProps {
 }
 
 export const CategoryCard = ({
-  category: { name, image, price },
+  category: { id, name, image, price },
 }: CategoryCardProps) => {
+  const setActiveCategory = useStore(state => state.setActiveCategory)
   return (
-    <TouchableOpacity style={styles.cardContainer}>
+    <TouchableOpacity
+      style={styles.cardContainer}
+      onPress={() => setActiveCategory(id)}
+    >
       <ImageBackground
         source={{
           uri: image,
