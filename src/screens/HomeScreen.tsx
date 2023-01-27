@@ -18,9 +18,12 @@ export const HomeScreen = () => {
       <CategoryList />
       <Spacer space={18} />
       {activeCategory === '' ? (
-        <Empty />
+        <Empty text="Por favor seleccione una categoría" icon="touch-app" />
       ) : (
-        <HotelList hotels={hotelsByCategory} />
+        <HotelList
+          hotels={hotelsByCategory}
+          textEmpty="No hay elementos en esta categoría"
+        />
       )}
     </>
   )
