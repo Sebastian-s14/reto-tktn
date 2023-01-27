@@ -1,10 +1,11 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+
+import { Title } from '@ui'
 
 export const SettingsScreen = () => {
   return (
-    <View>
-      <Text>SettingsScreen</Text>
-    </View>
+    <>
+      <Title text="Configuración" />
+    </>
   )
 }

@@ -1,10 +1,11 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+
+import { Title } from '@ui'
 
 export const NavigationScreen = () => {
   return (
-    <View>
-      <Text>NavigationScreen</Text>
-    </View>
+    <>
+      <Title text="Alojamientos más cercanos" />
+    </>
   )
 }
