@@ -7,27 +7,30 @@ import { Empty, Spacer } from '@ui'
 
 interface HotelListProps {
   hotels: Hotel[]
+  textEmpty?: string
+  iconEmpty?: string
 }
 
-export const HotelList = ({ hotels }: HotelListProps) => {
-  if (hotels.length === 0)
-    return <Empty text="No hay elementos en esta categoría" icon="error" />
-
+export const HotelList = ({
+  hotels,
+  textEmpty = 'No hay elementos',
+  iconEmpty = 'error',
+}: HotelListProps) => {
   return (
     <FlatList
-      style={stlyes.hotels}
       data={hotels}
       keyExtractor={({ id }) => id}
       renderItem={({ item }) => <HotelCard hotel={item} />}
       ItemSeparatorComponent={() => <Spacer />}
       showsVerticalScrollIndicator={false}
-      // ListEmptyComponent={<Empty text="No hay elementos" />}
+      contentContainerStyle={stlyes.contentContainerStyle}
+      ListEmptyComponent={<Empty text={textEmpty} icon={iconEmpty} />}
     />
   )
 }
 
 const stlyes = StyleSheet.create({
-  hotels: {
-    flex: 1,
+  contentContainerStyle: {
+    flexGrow: 1,
   },
 })
