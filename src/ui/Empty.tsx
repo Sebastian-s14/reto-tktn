@@ -4,14 +4,11 @@ import { StyleSheet, Text, View } from 'react-native'
 import { CustomIcon } from '@components'
 
 interface EmptyProps {
-  text?: string
+  text: string
   icon?: string
 }
 
-export const Empty = ({
-  text = 'Por favor seleccione una categoría',
-  icon = 'touch-app',
-}: EmptyProps) => {
+export const Empty = ({ text, icon = 'error' }: EmptyProps) => {
   return (
     <View style={styles.emptyContainer}>
       <Text style={styles.text}>{text}</Text>
